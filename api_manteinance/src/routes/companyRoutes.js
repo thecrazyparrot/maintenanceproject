@@ -1,8 +1,6 @@
 const Company = require('../models/company');
 
 module.exports = function (app) {
-    //     const express = require('express');
-    // const router = express.Router();
 
     app.get('/companies', (req, res) => {
         Company.getCompany((err, data) => {
@@ -15,7 +13,7 @@ module.exports = function (app) {
         const companyData = {
             idcompany: null,
             company_name: req.body.company_name,
-            company_creationDay: getUTCDate(),
+            company_creationDay: new Date().getUTCDate,
             company_active: 1
         };
 
@@ -39,13 +37,13 @@ module.exports = function (app) {
 
 
     app.put('/Companies', (req, res) => {
-        //console.log(req.body);
+
         const companyData = {
-            idCompany: req.body.MM,
+            idCompany: req.body.idcompany,
             company_name: req.body.company_name,
             company_active: req.body.company_active
         };
-        console.log(companyData);
+
         Company.updateCompany(companyData, (err, data) => {
 
             if (data && data.msg) {
@@ -61,24 +59,20 @@ module.exports = function (app) {
     })
 
 
-    //  app.delete('/companies/:idcompany', (req,res) =>{
-    //     console.log(req);
-    // })
-   app.delete('/companies/:idcompany', (req, res) => {
-         
-    console.log(req.params.idcompany);
-         Company.deleteCompany(req.params, (err, data) => {
-           
-        if(data && (data.msg === 'deleted' || data.msg === 'not exist')) {
-            res.json({
-                success: true,
-                data
-            })
-        } else {
-            res.status(500).json({
-            msg: 'Error'
-            })
-        }
+    app.delete('/companies/:idcompany', (req, res) => {
+
+        Company.deleteCompany(req.params, (err, data) => {
+
+            if (data && (data.msg === 'deleted' || data.msg === 'not exist')) {
+                res.json({
+                    success: true,
+                    data
+                })
+            } else {
+                res.status(500).json({
+                    msg: 'Error'
+                })
+            }
         })
 
     })
