@@ -19,6 +19,7 @@ companyModel.getCompany = (callback) => {
                 if (err) {
                     throw err;
                 } else {
+                    
                     callback(null, rows);
                 }
             }
