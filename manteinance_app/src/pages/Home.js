@@ -1,10 +1,14 @@
 import React from 'react';
+import { Typography,} from '@material-ui/core';
 
-import {
-  Typography,
-} from '@material-ui/core';
+
+// export default () => (
+
+// <Home></Home> 
+
+// );
 
 
 export default () => (
-  <Typography variant="display1">Listado de empresas</Typography>
-);
+    <Typography variant="display1"></Typography>
+  );

@@ -9,7 +9,7 @@ module.exports = function (app) {
     });
 
 
-    app.post('/companies', (req, res) => {
+    app.post('/companies', (req, result) => {
         const companyData = {
             idcompany: null,
             company_name: req.body.company_name,
@@ -19,13 +19,13 @@ module.exports = function (app) {
 
         Company.insertCompany(companyData, (err, data) => {
             if (data && data.insertId) {
-                res.json({
+                result.json({
                     success: true,
                     msg: 'Empresa creada.',
                     data: data
                 })
             } else {
-                res.success(500).json({
+                result.success(500).json({
                     success: false,
                     msg: 'Error al crear la empresa'
                 })

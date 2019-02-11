@@ -3,11 +3,12 @@ import {
   CssBaseline,
   withStyles,
 } from '@material-ui/core';
-
+import { Route } from 'react-router-dom';
 import AppHeader from './components/AppHeader';
 import Home from './pages/Home';
-import MyComponent from './components/MyComponent'
-
+import CompaniesList from './components/CompaniesList'
+import Devices from './components/devices/devices'
+import Drawer from './components/Drawer'
 
 // callApi(){
 //   // Github fetch library : https://github.com/github/fetch
@@ -23,9 +24,11 @@ import MyComponent from './components/MyComponent'
 //   })
 // }
 
+
+
 const styles = theme => ({
   main: {
-    padding: 3 * theme.spacing.unit,
+    padding: 10 * theme.spacing.unit,
     [theme.breakpoints.down('xs')]: {
       padding: 2 * theme.spacing.unit,
     },
@@ -36,10 +39,12 @@ const App = ({ classes }) => (
   <Fragment>
     <CssBaseline />
     <AppHeader />
+    {/* <Drawer></Drawer> */}
     <main className={classes.main}>
-      <Home />
-     
-      
+    <Route  path="/" component={Home} />
+    <Route  path="/empresas" component={CompaniesList} />
+    <Route  path="/devices" component={Devices} />
+    
     </main>
   </Fragment>
 );
